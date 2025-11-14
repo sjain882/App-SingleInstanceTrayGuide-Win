@@ -9,4 +9,10 @@ namespace App_SingleInstanceTrayGuide_Win;
 /// </summary>
 public partial class App : Application
 {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var trayGuideWindow = new TrayGuideWindow();
+        trayGuideWindow.Show();
+    }
 }
