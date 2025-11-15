@@ -3,15 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:App_SingleInstanceTrayGuide_Win.GUI.ViewModel"
         mc:Ignorable="d"
         Title="Info"
         Width="{Binding XWidth, Mode=TwoWay}"
         Height="{Binding YHeight, Mode=TwoWay}"
         Left="{Binding Left, Mode=TwoWay}"
-        SizeToContent="Height"
+        SizeToContent="WidthAndHeight"
         Top="{Binding Top, Mode=TwoWay}"
         WindowStartupLocation="Manual"
         WindowStyle="ToolWindow">
+
+    <Window.DataContext>
+        <viewModel:TrayGuideWindowViewModel />
+    </Window.DataContext>
 
     <!--  Main grid  -->
     <Grid Margin="5">
@@ -50,7 +55,7 @@
             Grid.Row="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding GUI_TitleLabelText}"
+            Content="{Binding TitleLabelText, Mode=OneWay}"
             FontSize="13" />
 
         <!--  Taskbar guide image  -->
@@ -58,7 +63,7 @@
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Source="{ Binding GUI_TaskbarImage}"
+            Source="{ Binding TaskbarImage, Mode=OneWay}"
             Stretch="Uniform" />
 
         <!--  App icon guide label  -->
@@ -66,7 +71,7 @@
             Grid.Row="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding GUI_AppIconText}"
+            Content="{Binding AppIconText, Mode=OneWay}"
             FontSize="13" />
 
         <!--  App icon image  -->
@@ -74,7 +79,7 @@
             Grid.Row="3"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Source="{ Binding GUI_AppIconImage}"
+            Source="{ Binding AppIconImage, Mode=OneWay}"
             Stretch="Uniform" />
 
         <!--  Overflow guide label | Overflow image  -->
@@ -89,14 +94,14 @@
                 Grid.Column="0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Content="{Binding GUI_OverflowText}"
+                Content="{Binding OverflowText, Mode=OneWay}"
                 FontSize="13" />
 
             <Image
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Source="{ Binding GUI_OverflowImage}"
+                Source="{ Binding OverflowImage, Mode=OneWay}"
                 Stretch="Uniform" />
 
         </Grid>
@@ -111,7 +116,7 @@
             VerticalAlignment="Center"
             d:Content="Start!"
             Command="{Binding CloseWindowCommand}"
-            Content="{Binding GUI_OKButtonText, FallbackValue=OK}"
+            Content="{Binding OKButtonText, FallbackValue=OK, Mode=OneWay}"
             FontSize="14" />
     </Grid>
 
