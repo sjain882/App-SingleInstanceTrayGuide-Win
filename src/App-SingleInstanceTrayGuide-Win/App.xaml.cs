@@ -36,13 +36,11 @@ public partial class App : Application
                 break;
             case 1:
                 _trayGuideWindowConfig.SetIsAppAlreadyRunning(true);
-                MessageBox.Show(_trayGuideWindowConfig.TitleLabelText);
                 _trayGuideWindow = new TrayGuideWindow(_trayGuideWindowConfig);
                 _trayGuideWindow.Show();
                 break;
             case 2:
                 _trayGuideWindowConfig.SetIsAppAlreadyRunning(false);
-                MessageBox.Show(_trayGuideWindowConfig.TitleLabelText);
                 _trayGuideWindow = new TrayGuideWindow(_trayGuideWindowConfig);
                 _trayGuideWindow.Show();
                 break;
