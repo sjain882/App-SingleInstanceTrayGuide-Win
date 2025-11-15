@@ -20,8 +20,7 @@ public class TrayGuideWindowConfig : IConfig
     public string OverflowImagePath { get; set; }
     public string FullOverflowImagePath { get; set; }
     public BitmapImage OverflowImage { get; set; }
-    public string TaskSchedErrorText { get; set; }
-    public string MultiInstanceErrorText { get; set; }
+    public string OKButtonText { get; set; } = "OK";
 
     public TrayGuideWindowConfig() => LoadConfig();
 
@@ -35,8 +34,7 @@ public class TrayGuideWindowConfig : IConfig
         AppControlText = ConfigurationManager.AppSettings["GUI_AppControlText"];
         OverflowText = ConfigurationManager.AppSettings["GUI_OverflowText"];
         OverflowImagePath = ConfigurationManager.AppSettings["GUI_OverflowImagePath"];
-        TaskSchedErrorText = ConfigurationManager.AppSettings["GUI_TaskSchedErrorText"];
-        MultiInstanceErrorText = ConfigurationManager.AppSettings["GUI_MultiInstanceErrorText"];
+        OKButtonText = ConfigurationManager.AppSettings["GUI_OKButtonText"];
         
         ResolvePaths();
         EvaluateStrings();
@@ -55,12 +53,11 @@ public class TrayGuideWindowConfig : IConfig
         AppAlreadyRunningText = AppName + AppAlreadyRunningText;
         AppNowRunningText = AppName + AppNowRunningText;
         
-        AppAlreadyRunningText = AppControlText.Replace("\\n", Environment.NewLine);
-        AppNowRunningText = AppControlText.Replace("\\n", Environment.NewLine);
+        AppAlreadyRunningText = AppAlreadyRunningText.Replace("\\n", Environment.NewLine);
+        AppNowRunningText = AppNowRunningText.Replace("\\n", Environment.NewLine);
         AppControlText = AppControlText.Replace("\\n", Environment.NewLine);
-        OverflowText = AppControlText.Replace("\\n", Environment.NewLine);
-        TaskSchedErrorText = AppControlText.Replace("\\n", Environment.NewLine);
-        MultiInstanceErrorText = AppControlText.Replace("\\n", Environment.NewLine);
+        OverflowText = OverflowText.Replace("\\n", Environment.NewLine);
+        OKButtonText = OKButtonText.Replace("\\n", Environment.NewLine);
     }
 
     private void LoadImages()
