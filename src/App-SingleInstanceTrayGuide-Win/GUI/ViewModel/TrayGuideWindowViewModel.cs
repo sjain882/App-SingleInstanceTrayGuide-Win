@@ -1,4 +1,6 @@
+using System.Windows;
 using System.Windows.Media.Imaging;
+using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.MVVM;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel.Commands;
 
@@ -6,8 +8,10 @@ namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 
 public class TrayGuideWindowViewModel : ViewModelBase
 {
+    private TrayGuideWindowConfig _trayGuideWindowConfig;
+    
     private BitmapImage _appIconImage;
-    private string _appIconText;
+    private string _appControlText;
     private BitmapImage _overflowImage;
     private string _overflowText;
     private BitmapImage _taskbarImage;
@@ -20,26 +24,102 @@ public class TrayGuideWindowViewModel : ViewModelBase
     private int _win_yHeight;
 
 
-    public TrayGuideWindowViewModel()
+    public TrayGuideWindowViewModel(TrayGuideWindowConfig trayGuideWindowConfig)
     {
+        _trayGuideWindowConfig = trayGuideWindowConfig;
+        
+        TitleLabelText = _trayGuideWindowConfig.TitleLabelText;
+        TaskbarImage = _trayGuideWindowConfig.TaskbarImage;
+        AppControlText = _trayGuideWindowConfig.AppControlText;
+        AppIconImage = _trayGuideWindowConfig.AppIconImage;
+        OverflowText = _trayGuideWindowConfig.OverflowText;
+        OverflowImage = _trayGuideWindowConfig.OverflowImage;
+        OKButtonText = _trayGuideWindowConfig.OKButtonText;
+        
+        CloseWindowCommand = new CloseWindowCommand();
+        
         // Set the default window dimensions
         // XWidth = 500;
         // YHeight = 660;
 
-        // Create "close window" command object, passing a reference to this ViewModel 
-        CloseWindowCommand = new CloseWindowCommand();
     }
 
     // -------------------- DATA BINDINGS START --------------------
 
-    public string TitleLabelText { get => _titleLabelText; }
-    public BitmapImage TaskbarImage { get => _taskbarImage; }
-    public string AppIconText { get => _appIconText; }
-    public BitmapImage AppIconImage { get => _appIconImage; }
-    public string OverflowText { get => _overflowText; }
-    public BitmapImage OverflowImage { get => _overflowImage; }
+    public string TitleLabelText
+    {
+        get => _titleLabelText;
+        set
+        {
+            _titleLabelText = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public BitmapImage TaskbarImage
+    {
+        get => _taskbarImage;
+        set
+        {
+            _taskbarImage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string AppControlText
+    {
+        get => _appControlText;
+        set
+        {
+            _appControlText = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public BitmapImage AppIconImage
+    {
+        get => _appIconImage;
+        set
+        {
+            _appIconImage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string OverflowText
+    {
+        get => _overflowText;
+        set
+        {
+            _overflowText = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public BitmapImage OverflowImage
+    {
+        get => _overflowImage;
+        set
+        {
+            _overflowImage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string OKButtonText
+    {
+        get => _okButtonText;
+        set
+        {
+            _okButtonText = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    
+    // --------------------- OK BUTTON COMMAND ---------------------
+    
     public CloseWindowCommand CloseWindowCommand { get; set; }
-    public string OKButtonText { get => _okButtonText; }
 
     
     // --------------------- WINDOW DIMENSIONS ---------------------

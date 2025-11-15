@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using App_SingleInstanceTrayGuide_Win.Config;
+using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 
 namespace App_SingleInstanceTrayGuide_Win;
 
@@ -16,8 +18,13 @@ namespace App_SingleInstanceTrayGuide_Win;
 /// </summary>
 public partial class TrayGuideWindow : Window
 {
-    public TrayGuideWindow()
+    private TrayGuideWindowViewModel ViewModel;
+    
+    public TrayGuideWindow(TrayGuideWindowConfig trayGuideWindowConfig)
     {
+        ViewModel = new TrayGuideWindowViewModel(trayGuideWindowConfig);
+        DataContext = ViewModel;
+        
         InitializeComponent();
     }
 }
