@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -22,28 +23,18 @@ public class TrayGuideWindowConfig
     public string TaskSchedErrorText { get; set; }
     public string MultiInstanceErrorText { get; set; }
 
-    public TrayGuideWindowConfig(
-        string appName,
-        string appIconPath,
-        string taskbarImagePath,
-        string appAlreadyRunningText,
-        string appNowRunningText,
-        string appControlText,
-        string overflowText,
-        string overflowImagePath,
-        string taskSchedErrorText,
-        string multiInstanceErrorText)
+    public void LoadConfig()
     {
-        AppName = appName;
-        AppIconPath = appIconPath;
-        TaskbarImagePath = taskbarImagePath;
-        AppAlreadyRunningText = appAlreadyRunningText;
-        AppNowRunningText = appNowRunningText;
-        AppControlText = appControlText;
-        OverflowText = overflowText;
-        OverflowImagePath = overflowImagePath;
-        TaskSchedErrorText = taskSchedErrorText;
-        MultiInstanceErrorText = multiInstanceErrorText;
+        AppName = ConfigurationManager.AppSettings["GUI_AppName"];
+        AppIconPath = ConfigurationManager.AppSettings["GUI_AppIconPath"];
+        TaskbarImagePath = ConfigurationManager.AppSettings["GUI_TaskbarImagePath"];
+        AppAlreadyRunningText = ConfigurationManager.AppSettings["GUI_AppAlreadyRunningText"];
+        AppNowRunningText = ConfigurationManager.AppSettings["GUI_AppNowRunningText"];
+        AppControlText = ConfigurationManager.AppSettings["GUI_AppControlText"];
+        OverflowText = ConfigurationManager.AppSettings["GUI_OverflowText"];
+        OverflowImagePath = ConfigurationManager.AppSettings["GUI_OverflowImagePath"];
+        TaskSchedErrorText = ConfigurationManager.AppSettings["GUI_TaskSchedErrorText"];
+        MultiInstanceErrorText = ConfigurationManager.AppSettings["GUI_MultiInstanceErrorText"];
         
         ResolvePaths();
         EvaluateStrings();
