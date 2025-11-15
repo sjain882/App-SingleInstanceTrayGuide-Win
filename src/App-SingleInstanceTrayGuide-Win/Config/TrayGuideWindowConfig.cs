@@ -13,6 +13,7 @@ public class TrayGuideWindowConfig : IConfig
     public string TaskbarImagePath { get; set; }
     public string FullTaskbarImagePath { get; set; }
     public BitmapImage TaskbarImage { get; set; }
+    public string TitleLabelText { get; set; }
     public string AppAlreadyRunningText { get; set; }
     public string AppNowRunningText { get; set; }
     public string AppControlText { get; set; }
@@ -29,6 +30,7 @@ public class TrayGuideWindowConfig : IConfig
         AppName = ConfigurationManager.AppSettings["GUI_AppName"];
         AppIconPath = ConfigurationManager.AppSettings["GUI_AppIconPath"];
         TaskbarImagePath = ConfigurationManager.AppSettings["GUI_TaskbarImagePath"];
+        TitleLabelText = String.Empty;
         AppAlreadyRunningText = ConfigurationManager.AppSettings["GUI_AppAlreadyRunningText"];
         AppNowRunningText = ConfigurationManager.AppSettings["GUI_AppNowRunningText"];
         AppControlText = ConfigurationManager.AppSettings["GUI_AppControlText"];
@@ -39,6 +41,18 @@ public class TrayGuideWindowConfig : IConfig
         ResolvePaths();
         EvaluateStrings();
         LoadImages();
+    }
+
+    public void SetIsAppAlreadyRunning(bool isRunning)
+    {
+        if (isRunning)
+        {
+            TitleLabelText = AppAlreadyRunningText;
+        }
+        else
+        {
+            TitleLabelText = AppNowRunningText;
+        }
     }
 
     private void ResolvePaths()
