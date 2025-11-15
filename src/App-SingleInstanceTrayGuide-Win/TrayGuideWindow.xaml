@@ -3,10 +3,116 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:App_SingleInstanceTrayGuide_Win"
         mc:Ignorable="d"
-        Title="TrayGuideWindow" Height="450" Width="800">
-    <Grid>
+        Title="Info"
+        Width="{Binding XWidth, Mode=TwoWay}"
+        Height="{Binding YHeight, Mode=TwoWay}"
+        Left="{Binding Left, Mode=TwoWay}"
+        SizeToContent="Height"
+        Top="{Binding Top, Mode=TwoWay}"
+        WindowStartupLocation="Manual"
+        WindowStyle="ToolWindow">
 
+    <!--  Main grid  -->
+    <Grid Margin="5">
+
+        <!-- ====== ROWS ====== -->
+        <Grid.RowDefinitions>
+
+            <!--  Title label  -->
+            <RowDefinition Height="30" />
+
+            <!--  Taskbar guide label  -->
+            <RowDefinition Height="30" />
+
+            <!--  Taskbar image  -->
+            <RowDefinition Height="30" />
+
+            <!--  App icon guide label  -->
+            <RowDefinition Height="30" />
+
+            <!--  App icon image  -->
+            <RowDefinition Height="30" />
+
+            <!--  Overflow guide label | Overflow image  -->
+            <RowDefinition Height="30" />
+
+            <!--  OK button  -->
+            <RowDefinition Height="30" />
+
+        </Grid.RowDefinitions>
+
+
+        <!-- ====== CONTENT ====== -->
+
+        <!--  Title label  -->
+        <Label
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{Binding GUI_TitleLabelText}"
+            FontSize="13" />
+
+        <!--  Taskbar guide image  -->
+        <Image
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="{ Binding GUI_TaskbarImage}"
+            Stretch="Uniform" />
+
+        <!--  App icon guide label  -->
+        <Label
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{Binding GUI_AppIconText}"
+            FontSize="13" />
+
+        <!--  App icon image  -->
+        <Image
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="{ Binding GUI_AppIconImage}"
+            Stretch="Uniform" />
+
+        <!--  Overflow guide label | Overflow image  -->
+        <Grid Grid.Row="4">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*" />
+                <ColumnDefinition Width="15*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="{Binding GUI_OverflowText}"
+                FontSize="13" />
+
+            <Image
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Source="{ Binding GUI_OverflowImage}"
+                Stretch="Uniform" />
+
+        </Grid>
+
+
+        <!--  OK button  -->
+        <Button
+            Grid.Row="5"
+            Name="StartBtn"
+            Padding="20,4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            d:Content="Start!"
+            Command="{Binding CloseWindowCommand}"
+            Content="{Binding GUI_OKButtonText, FallbackValue=OK}"
+            FontSize="14" />
     </Grid>
+
 </Window>
