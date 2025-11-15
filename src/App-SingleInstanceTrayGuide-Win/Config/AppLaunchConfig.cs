@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace App_SingleInstanceTrayGuide_Win.Config;
 
-public class AppLaunchConfig
+public class AppLaunchConfig : IConfig
 {
     public bool LaunchAppViaTaskScheduler;
     public string Task1;
@@ -12,6 +12,8 @@ public class AppLaunchConfig
     public string AppExecutablePath;
     public string AppWorkingDirectory;
     public string AppArguments;
+    
+    public AppLaunchConfig() => LoadConfig();
     
     public void LoadConfig()
     {

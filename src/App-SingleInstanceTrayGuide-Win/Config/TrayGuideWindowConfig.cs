@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace App_SingleInstanceTrayGuide_Win.Config;
 
-public class TrayGuideWindowConfig
+public class TrayGuideWindowConfig : IConfig
 {
     public string AppName { get; set; }
     public string AppIconPath { get; set; }
@@ -22,6 +22,8 @@ public class TrayGuideWindowConfig
     public BitmapImage OverflowImage { get; set; }
     public string TaskSchedErrorText { get; set; }
     public string MultiInstanceErrorText { get; set; }
+
+    public TrayGuideWindowConfig() => LoadConfig();
 
     public void LoadConfig()
     {
@@ -41,14 +43,14 @@ public class TrayGuideWindowConfig
         LoadImages();
     }
 
-    public void ResolvePaths()
+    private void ResolvePaths()
     {
         FullAppIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppIconPath);
         FullTaskbarImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TaskbarImagePath);
         FullOverflowImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, OverflowImagePath);
     }
 
-    public void EvaluateStrings()
+    private void EvaluateStrings()
     {
         AppAlreadyRunningText = AppName + AppAlreadyRunningText;
         AppNowRunningText = AppName + AppNowRunningText;
@@ -61,7 +63,7 @@ public class TrayGuideWindowConfig
         MultiInstanceErrorText = AppControlText.Replace("\\n", Environment.NewLine);
     }
 
-    public void LoadImages()
+    private void LoadImages()
     {
         AppIconImage = new BitmapImage(new Uri(FullAppIconPath));
         TaskbarImage = new BitmapImage(new Uri(FullTaskbarImagePath));

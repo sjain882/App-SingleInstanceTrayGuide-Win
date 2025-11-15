@@ -2,9 +2,11 @@ using System.Configuration;
 
 namespace App_SingleInstanceTrayGuide_Win.Config;
 
-public class DebugConfig
+public class DebugConfig : IConfig
 {
     public int ShowGUI { get; set; }
+    
+    public DebugConfig() => LoadConfig();
 
     public void LoadConfig()
     {
