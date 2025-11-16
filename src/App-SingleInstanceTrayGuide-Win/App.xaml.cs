@@ -37,6 +37,9 @@ public partial class App : Application
         ViewModel = new TrayGuideWindowViewModel(_trayGuideWindowConfig);
         _trayGuideWindow.DataContext = ViewModel;
         
+        // Set initial positon off screen to avoid brief flash in wrong position
+        ViewModel.UpdateWindowPosition(new Point(9999, 9999));
+        
         // Show window (must be done before 
         _trayGuideWindow.Show();
         
