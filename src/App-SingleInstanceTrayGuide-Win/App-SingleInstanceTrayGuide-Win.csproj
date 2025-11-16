@@ -11,6 +11,8 @@
 
     <ItemGroup>
       <None Remove="Images\overflow.png" />
+      <None Remove="Images\OverflowBlack.svg" />
+      <None Remove="Images\OverflowLight.svg" />
       <None Remove="Images\taskbar.png" />
     </ItemGroup>
 

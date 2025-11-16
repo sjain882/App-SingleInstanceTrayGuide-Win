@@ -7,8 +7,8 @@ using System.Windows;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
-using App_SingleInstanceTrayGuide_Win.Infrastructure.Interop;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Windowing;
+using App_SingleInstanceTrayGuide_Win.Infrastructure.Theming;
 
 namespace App_SingleInstanceTrayGuide_Win;
 
@@ -58,8 +58,8 @@ public partial class App : Application
     
     private void ConfigureServices(IServiceCollection services)
     {
-        // Register TopmostService
         services.AddSingleton<ITopmostService, TopmostService>();
+        services.AddSingleton<IOSThemeDetector, OSThemeDetector>();
     }
     
     protected override void OnStartup(StartupEventArgs e)
@@ -70,11 +70,15 @@ public partial class App : Application
         var serviceCollection = new ServiceCollection();
         ConfigureServices(serviceCollection);
         Services = serviceCollection.BuildServiceProvider();
-        
+
+        // Detect OS Theme
+        var osThemeDetector = Services.GetRequiredService<IOSThemeDetector>();
+        bool isDarkThemeEnabled = osThemeDetector.IsDarkThemeEnabled();
+
         // Load config
         _debugConfig = new DebugConfig();
         _appLaunchConfig = new AppLaunchConfig();
-        _trayGuideWindowConfig = new TrayGuideWindowConfig();
+        _trayGuideWindowConfig = new TrayGuideWindowConfig(isDarkThemeEnabled);
         _errorMessagesConfig = new ErrorMessagesConfig();
 
         // Debug logic

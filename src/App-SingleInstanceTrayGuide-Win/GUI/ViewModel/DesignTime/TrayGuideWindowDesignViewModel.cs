@@ -1,8 +1,9 @@
-using System.IO;
-using System.Windows;
-using System.Windows.Media.Imaging;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel.DesignTime;
 
@@ -27,6 +28,9 @@ public class TrayGuideWindowDesignViewModel
 
     public BitmapImage OverflowImage => new BitmapImage(
         new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "Overflow.png")));
+
+    public ImageSource OverflowIcon =>
+            (ImageSource)Application.Current.Resources["OverflowLight"];
 
     public string OKButtonText => "OK";
 

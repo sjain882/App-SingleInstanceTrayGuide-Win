@@ -1,11 +1,14 @@
 using System.Configuration;
 using System.IO;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace App_SingleInstanceTrayGuide_Win.Config;
 
 public class TrayGuideWindowConfig : IConfig
 {
+    private readonly bool _isDarkThemeEnabled;
     public string AppName { get; set; }
     public string AppAlreadyRunningText { get; set; }
     public string AppNowRunningText { get; set; }
@@ -22,14 +25,15 @@ public class TrayGuideWindowConfig : IConfig
     public BitmapImage AppIconImage { get; set; }
     
     public string OverflowText { get; set; }
-    public string OverflowImagePath { get; set; }
-    public string FullOverflowImagePath { get; set; }
-    public BitmapImage OverflowImage { get; set; }
+    public ImageSource OverflowIcon { get; set; }
     
     public string OKButtonText { get; set; } = "OK";
 
-    public TrayGuideWindowConfig() => LoadConfig();
-    
+    public TrayGuideWindowConfig(bool isDarkThemeEnabled)
+    {
+        _isDarkThemeEnabled = isDarkThemeEnabled;
+        LoadConfig();
+    }
 
     public void LoadConfig()
     {
@@ -45,8 +49,8 @@ public class TrayGuideWindowConfig : IConfig
         AppIconPath = ConfigurationManager.AppSettings["GUI_AppIconPath"];
         
         OverflowText = ConfigurationManager.AppSettings["GUI_OverflowText"];
-        OverflowImagePath = ConfigurationManager.AppSettings["GUI_OverflowImagePath"];
-        
+        OverflowIcon = (ImageSource)Application.Current.Resources[_isDarkThemeEnabled ? "OverflowDark" : "OverflowLight"];
+
         OKButtonText = ConfigurationManager.AppSettings["GUI_OKButtonText"];
         
         ResolvePaths();
@@ -70,7 +74,6 @@ public class TrayGuideWindowConfig : IConfig
     {
         FullAppIconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppIconPath);
         FullTaskbarImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TaskbarImagePath);
-        FullOverflowImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, OverflowImagePath);
     }
 
     private void EvaluateStrings()
@@ -90,6 +93,5 @@ public class TrayGuideWindowConfig : IConfig
     {
         AppIconImage = new BitmapImage(new Uri(FullAppIconPath));
         TaskbarImage = new BitmapImage(new Uri(FullTaskbarImagePath));
-        OverflowImage = new BitmapImage(new Uri(FullOverflowImagePath));
     }
 }

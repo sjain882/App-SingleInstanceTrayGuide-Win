@@ -1,8 +1,9 @@
-using System.Windows;
-using System.Windows.Media.Imaging;
 using App_SingleInstanceTrayGuide_Win.Config;
-using App_SingleInstanceTrayGuide_Win.GUI.MVVM;
 using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
+using App_SingleInstanceTrayGuide_Win.GUI.MVVM;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 
@@ -16,7 +17,7 @@ public class TrayGuideWindowViewModel : ViewModelBase
     private string _appControlText;
     private BitmapImage _appIconImage;
     private string _overflowText;
-    private BitmapImage _overflowImage;
+    private ImageSource _overflowIcon;
     private string _okButtonText;
 
     private int _win_left;
@@ -35,7 +36,7 @@ public class TrayGuideWindowViewModel : ViewModelBase
         AppControlText = _trayGuideWindowConfig.AppControlText;
         AppIconImage = _trayGuideWindowConfig.AppIconImage;
         OverflowText = _trayGuideWindowConfig.OverflowText;
-        OverflowImage = _trayGuideWindowConfig.OverflowImage;
+        OverflowIcon = _trayGuideWindowConfig.OverflowIcon;
         OKButtonText = _trayGuideWindowConfig.OKButtonText;
         
         CloseWindowCommand = new CloseWindowCommand();
@@ -109,12 +110,12 @@ public class TrayGuideWindowViewModel : ViewModelBase
         }
     }
 
-    public BitmapImage OverflowImage
+    public ImageSource OverflowIcon
     {
-        get => _overflowImage;
+        get => _overflowIcon;
         set
         {
-            _overflowImage = value;
+            _overflowIcon = value;
             OnPropertyChanged();
         }
     }
