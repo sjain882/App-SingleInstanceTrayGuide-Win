@@ -9,7 +9,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using App_SingleInstanceTrayGuide_Win.Config;
-using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 
 namespace App_SingleInstanceTrayGuide_Win;
 

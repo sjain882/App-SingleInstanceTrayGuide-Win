@@ -5,6 +5,7 @@ using System.Runtime.InteropServices.JavaScript;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using App_SingleInstanceTrayGuide_Win.Config;
+using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Interop;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Windowing;
