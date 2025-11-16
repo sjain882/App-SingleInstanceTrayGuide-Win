@@ -9,6 +9,10 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <!-- Windows 10 compatibility for .NET 9 Fluent theme -->
+    <!-- https://github.com/dotnet/wpf/issues/9635#issuecomment-2472295895 -->
+    <!-- https://github.com/dotnet/wpf/issues/10096#issuecomment-2487780714 -->
+    <!-- Still appears to be an issue with .NET 10 -->
     <ItemGroup>
         <RuntimeHostConfigurationOption Include="Switch.System.Windows.Appearance.DisableFluentThemeWindowBackdrop" Value="true" />
     </ItemGroup>
