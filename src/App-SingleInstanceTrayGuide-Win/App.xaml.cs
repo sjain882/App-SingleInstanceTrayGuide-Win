@@ -5,6 +5,7 @@ using System.Runtime.InteropServices.JavaScript;
 using System.Windows;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
+using App_SingleInstanceTrayGuide_Win.Infrastructure.Interop;
 
 namespace App_SingleInstanceTrayGuide_Win;
 
@@ -40,6 +41,9 @@ public partial class App : Application
         
         // Set window position
         ViewModel.UpdateWindowPosition(_windowPositionConfig.CalculatedPosition);
+        
+        // Ensure window is topmost
+        Win32TopmostHelper.EnsureTopmost(_trayGuideWindow);
     }
     
     protected override void OnStartup(StartupEventArgs e)
