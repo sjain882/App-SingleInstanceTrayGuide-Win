@@ -8,10 +8,12 @@
         Width="{Binding XWidth, Mode=TwoWay}"
         Height="{Binding YHeight, Mode=TwoWay}"
         Left="{Binding Left, Mode=TwoWay}"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"
         Top="{Binding Top, Mode=TwoWay}"
         WindowStartupLocation="Manual"
-        WindowStyle="ToolWindow">
+        WindowStyle="None">
 
     <!--  Main grid  -->
     <Grid Margin="5">
