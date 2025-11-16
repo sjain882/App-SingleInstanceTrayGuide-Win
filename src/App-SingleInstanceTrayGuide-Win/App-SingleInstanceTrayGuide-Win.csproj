@@ -2,12 +2,16 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net10.0-windows</TargetFramework>
+        <TargetFramework>net9.0-windows7.0</TargetFramework>
         <RootNamespace>App_SingleInstanceTrayGuide_Win</RootNamespace>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.11" />
+    </ItemGroup>
 
     <!-- Windows 10 compatibility for .NET 9 Fluent theme -->
     <!-- https://github.com/dotnet/wpf/issues/9635#issuecomment-2472295895 -->
@@ -29,10 +33,6 @@
       <None Update="App.config">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
     </ItemGroup>
 
 </Project>
