@@ -1,3 +1,5 @@
+using System.IO;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
@@ -8,20 +10,22 @@ public class TrayGuideWindowDesignViewModel
 {
     // -------------------- DATA BINDINGS (EXAMPLE VALUES) --------------------
 
-    public string TitleLabelText => "Tray Guide Window";
+    public string TitleLabelText => "OBS is already running!";
 
     public BitmapImage TaskbarImage => new BitmapImage(
-        new Uri("pack://application:,,,/images/taskbar.png"));
+        new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "Taskbar.png")));
 
-    public string AppControlText => "Control Panel";
+    public string AppControlText => "Down here in the bottom right of the screen,"
+        + Environment.NewLine + "right click this icon to control it:";
 
     public BitmapImage AppIconImage => new BitmapImage(
-        new Uri("pack://application:,,,/images/obs.png"));
+        new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "AppIcon.png")));
 
-    public string OverflowText => "Overflow Menu";
+    public string OverflowText => "If you can't find it,"
+        + Environment.NewLine + "click this icon to check the overflow area:";
 
     public BitmapImage OverflowImage => new BitmapImage(
-        new Uri("pack://application:,,,/images/overflow.png"));
+        new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "Overflow.png")));
 
     public string OKButtonText => "OK";
 
@@ -31,10 +35,8 @@ public class TrayGuideWindowDesignViewModel
 
     // --------------------- WINDOW DIMENSIONS ---------------------
 
-    public int XWidth => 400;
-    public int YHeight => 300;
-    public int Left   => 100;
-    public int Top    => 100;
-
-
+    //public int XWidth => 400;
+    //public int YHeight => 300;
+    //public int Left   => 100;
+    //public int Top    => 100;
 }
