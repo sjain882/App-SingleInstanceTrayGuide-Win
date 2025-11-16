@@ -9,6 +9,7 @@ using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Windowing;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Theming;
+using App_SingleInstanceTrayGuide_Win.Infrastructure.System;
 
 namespace App_SingleInstanceTrayGuide_Win;
 
@@ -97,6 +98,58 @@ public partial class App : Application
                 return;
             default:
                 break;
+        }
+        
+        // Main logic
+        // Check if app running
+        var appProcesses =  Process.GetProcessesByName(_appLaunchConfig.AppProcessName);
+        
+        // Multi-instance is unsupported
+        if (appProcesses.Length > 1)
+        {
+            MessageBox.Show($"{_trayGuideWindowConfig.AppName} / {_appLaunchConfig.AppProcessName}{_errorMessagesConfig.MultiInstanceErrorText}",
+                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        // Already running
+        else if (appProcesses.Length > 0)
+        {
+            System.Media.SystemSounds.Asterisk.Play();
+            LaunchGUI(true);
+        }
+        // Not running - now we have to launch it
+        else
+        {
+            if (_appLaunchConfig.LaunchAppViaTaskScheduler)
+            {
+                // Trigger both tasks and wait for completion
+                bool task1Success = TaskSchedulerHelper.TriggerTask(_appLaunchConfig.Task1);
+                Thread.Sleep(_appLaunchConfig.DelayBetweenTasksMs);
+                bool task2Success = TaskSchedulerHelper.TriggerTask(_appLaunchConfig.Task2);
+
+                if (task1Success && task2Success)
+                {
+                    System.Media.SystemSounds.Asterisk.Play();
+                    LaunchGUI(false);
+                }
+                else
+                {
+                    MessageBox.Show($"{_trayGuideWindowConfig.AppName} / {_appLaunchConfig.AppProcessName}{_errorMessagesConfig.TaskSchedErrorText}",
+                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                using (var process = new Process())
+                {
+                    process.StartInfo = new ProcessStartInfo
+                    {
+                        FileName = _appLaunchConfig.AppExecutablePath,
+                        WorkingDirectory = _appLaunchConfig.AppWorkingDirectory,
+                        Arguments = _appLaunchConfig.AppArguments
+                    };
+                    process.Start();
+                }
+            }
         }
     }
 }
