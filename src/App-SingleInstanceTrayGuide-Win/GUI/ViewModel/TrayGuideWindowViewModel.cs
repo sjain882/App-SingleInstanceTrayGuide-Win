@@ -9,7 +9,7 @@ namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 public class TrayGuideWindowViewModel : ViewModelBase
 {
     private TrayGuideWindowConfig _trayGuideWindowConfig;
-    
+
     private BitmapImage _appIconImage;
     private string _appControlText;
     private BitmapImage _overflowImage;
@@ -37,11 +37,12 @@ public class TrayGuideWindowViewModel : ViewModelBase
         OKButtonText = _trayGuideWindowConfig.OKButtonText;
         
         CloseWindowCommand = new CloseWindowCommand();
-        
-        // Set the default window dimensions
-        // XWidth = 500;
-        // YHeight = 660;
+    }
 
+    public void UpdateWindowPosition(Point windowPosition)
+    {
+        Left = (int)windowPosition.X;
+        Top  = (int)windowPosition.Y;
     }
 
     // -------------------- DATA BINDINGS START --------------------

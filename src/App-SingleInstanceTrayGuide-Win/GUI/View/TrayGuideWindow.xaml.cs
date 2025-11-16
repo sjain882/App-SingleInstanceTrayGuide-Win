@@ -18,13 +18,9 @@ namespace App_SingleInstanceTrayGuide_Win;
 /// </summary>
 public partial class TrayGuideWindow : Window
 {
-    private TrayGuideWindowViewModel ViewModel;
     
-    public TrayGuideWindow(TrayGuideWindowConfig trayGuideWindowConfig)
+    public TrayGuideWindow()
     {
-        ViewModel = new TrayGuideWindowViewModel(trayGuideWindowConfig);
-        DataContext = ViewModel;
-        
         InitializeComponent();
     }
 }
