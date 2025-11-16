@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel.Commands;
+namespace App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
 
 public class CloseWindowCommand : ICommand
 {

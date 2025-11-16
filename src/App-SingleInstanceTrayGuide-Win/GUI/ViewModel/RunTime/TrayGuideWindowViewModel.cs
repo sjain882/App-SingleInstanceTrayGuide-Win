@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.MVVM;
-using App_SingleInstanceTrayGuide_Win.GUI.ViewModel.Commands;
+using App_SingleInstanceTrayGuide_Win.GUI.Infrastructure.Commands;
 
 namespace App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 
