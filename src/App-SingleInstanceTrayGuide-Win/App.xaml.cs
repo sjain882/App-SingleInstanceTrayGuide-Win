@@ -145,10 +145,13 @@ public partial class App : Application
                     {
                         FileName = _appLaunchConfig.AppExecutablePath,
                         WorkingDirectory = _appLaunchConfig.AppWorkingDirectory,
-                        Arguments = _appLaunchConfig.AppArguments
+                        Arguments = _appLaunchConfig.AppArguments,
+                        UseShellExecute = true
                     };
                     process.Start();
                 }
+                
+                LaunchGUI(false);
             }
         }
     }
