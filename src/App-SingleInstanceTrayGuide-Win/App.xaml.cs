@@ -2,10 +2,12 @@
 using System.Data;
 using System.Diagnostics;
 using System.Runtime.InteropServices.JavaScript;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using App_SingleInstanceTrayGuide_Win.Config;
 using App_SingleInstanceTrayGuide_Win.GUI.ViewModel;
 using App_SingleInstanceTrayGuide_Win.Infrastructure.Interop;
+using App_SingleInstanceTrayGuide_Win.Infrastructure.Windowing;
 
 namespace App_SingleInstanceTrayGuide_Win;
 
@@ -22,6 +24,8 @@ public partial class App : Application
     private TrayGuideWindowConfig _trayGuideWindowConfig;
     private ErrorMessagesConfig _errorMessagesConfig;
     private WindowPositionConfig _windowPositionConfig;
+    
+    public static ServiceProvider Services { get; private set; }
 
     private void LaunchGUI(bool IsAppAlreadyRunning)
     {
@@ -43,12 +47,25 @@ public partial class App : Application
         ViewModel.UpdateWindowPosition(_windowPositionConfig.CalculatedPosition);
         
         // Ensure window is topmost
-        Win32TopmostHelper.EnsureTopmost(_trayGuideWindow);
+        // Resolve TopmostService and enforce Topmost
+        var topmostService = Services.GetRequiredService<ITopmostService>();
+        topmostService.EnforceTopmost(_trayGuideWindow);
+    }
+    
+    private void ConfigureServices(IServiceCollection services)
+    {
+        // Register TopmostService
+        services.AddSingleton<ITopmostService, TopmostService>();
     }
     
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        
+        // Configure DI
+        var serviceCollection = new ServiceCollection();
+        ConfigureServices(serviceCollection);
+        Services = serviceCollection.BuildServiceProvider();
         
         // Load config
         _debugConfig = new DebugConfig();
