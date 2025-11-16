@@ -10,12 +10,13 @@ public class TrayGuideWindowViewModel : ViewModelBase
 {
     private TrayGuideWindowConfig _trayGuideWindowConfig;
 
-    private BitmapImage _appIconImage;
-    private string _appControlText;
-    private BitmapImage _overflowImage;
-    private string _overflowText;
-    private BitmapImage _taskbarImage;
     private string _titleLabelText;
+    private string _taskbarGuideText;
+    private BitmapImage _taskbarImage;
+    private string _appControlText;
+    private BitmapImage _appIconImage;
+    private string _overflowText;
+    private BitmapImage _overflowImage;
     private string _okButtonText;
 
     private int _win_left;
@@ -29,6 +30,7 @@ public class TrayGuideWindowViewModel : ViewModelBase
         _trayGuideWindowConfig = trayGuideWindowConfig;
         
         TitleLabelText = _trayGuideWindowConfig.TitleLabelText;
+        TaskbarGuideText = _trayGuideWindowConfig.TaskbarGuideText;
         TaskbarImage = _trayGuideWindowConfig.TaskbarImage;
         AppControlText = _trayGuideWindowConfig.AppControlText;
         AppIconImage = _trayGuideWindowConfig.AppIconImage;
@@ -53,6 +55,16 @@ public class TrayGuideWindowViewModel : ViewModelBase
         set
         {
             _titleLabelText = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public string TaskbarGuideText
+    {
+        get => _taskbarGuideText;
+        set
+        {
+            _taskbarGuideText = value;
             OnPropertyChanged();
         }
     }

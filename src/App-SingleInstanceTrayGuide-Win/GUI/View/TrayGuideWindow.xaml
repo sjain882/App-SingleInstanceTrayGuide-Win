@@ -55,7 +55,18 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="{Binding TitleLabelText, Mode=TwoWay}"
-            FontSize="13" />
+            FontSize="22"
+            FontWeight="Bold"
+            Margin="5"/>
+
+        <!--  Taskbar guide label  -->
+        <Label
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{Binding TaskbarGuideText, Mode=TwoWay}"
+            FontSize="13" 
+            Margin="5"/>
 
         <!--  Taskbar guide image  -->
         <Image

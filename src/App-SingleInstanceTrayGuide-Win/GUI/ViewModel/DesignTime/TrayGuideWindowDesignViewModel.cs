@@ -15,8 +15,9 @@ public class TrayGuideWindowDesignViewModel
     public BitmapImage TaskbarImage => new BitmapImage(
         new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "Taskbar.png")));
 
-    public string AppControlText => "Down here in the bottom right of the screen,"
-        + Environment.NewLine + "right click this icon to control it:";
+    public string TaskbarGuideText => "Down here in the bottom right of the screen:";
+
+    public string AppControlText => "Right click this icon to control it:";
 
     public BitmapImage AppIconImage => new BitmapImage(
         new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "AppIcon.png")));
