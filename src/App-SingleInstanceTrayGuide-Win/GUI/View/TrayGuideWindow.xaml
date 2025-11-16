@@ -24,25 +24,25 @@
         <Grid.RowDefinitions>
 
             <!--  Title label  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
             <!--  Taskbar guide label  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
             <!--  Taskbar image  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
             <!--  App icon guide label  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
             <!--  App icon image  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="192*" />
 
             <!--  Overflow guide label | Overflow image  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
             <!--  OK button  -->
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30*" />
 
         </Grid.RowDefinitions>
 
@@ -55,9 +55,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="{Binding TitleLabelText, Mode=TwoWay}"
-            FontSize="22"
+            FontSize="40"
             FontWeight="Bold"
-            Margin="5"/>
+            Margin="5,5,5,20"/>
 
         <!--  Taskbar guide label  -->
         <Label
@@ -65,35 +65,43 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="{Binding TaskbarGuideText, Mode=TwoWay}"
-            FontSize="13" 
+            FontSize="22" 
             Margin="5"/>
 
         <!--  Taskbar guide image  -->
         <Image
-            Grid.Row="1"
+            Grid.Row="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Source="{ Binding TaskbarImage, Mode=TwoWay}"
-            Stretch="Uniform" />
+            Source="{ Binding TaskbarImage, Mode=OneWay}"
+            Stretch="Uniform"
+            Margin="5,0,5,40"
+            MaxWidth="512"/>
 
         <!--  App icon guide label  -->
         <Label
-            Grid.Row="2"
+            Grid.Row="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Content="{Binding AppControlText, Mode=TwoWay}"
-            FontSize="13" />
+            FontSize="22"
+            Margin="5"/>
 
         <!--  App icon image  -->
         <Image
-            Grid.Row="3"
+            Grid.Row="4"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Source="{ Binding AppIconImage, Mode=TwoWay}"
-            Stretch="Uniform" />
+            Source="{ Binding AppIconImage, Mode=OneWay}"
+            Stretch="Uniform"
+            Width="192"
+            Height="192"
+            Margin="5,0,5,46"
+            MaxWidth="192"
+            MaxHeight="192"/>
 
         <!--  Overflow guide label | Overflow image  -->
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="5" Margin="5,5,5,20">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*" />
@@ -105,30 +113,33 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Content="{Binding OverflowText, Mode=TwoWay}"
-                FontSize="13" />
+                FontSize="18" 
+                Margin="5,5,10,5"/>
 
             <Image
                 Grid.Column="1"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Source="{ Binding OverflowIcon, Mode=OneWay}"
                 Stretch="Uniform"
-                Margin="5"/>
+                Margin="5"
+                MaxWidth="96"/>
 
         </Grid>
 
 
         <!--  OK button  -->
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Name="StartBtn"
             Padding="20,4"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            d:Content="Start!"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            d:Content="OK"
             Command="{Binding CloseWindowCommand}"
             Content="{Binding OKButtonText, FallbackValue=OK, Mode=TwoWay}"
-            FontSize="14" />
+            FontSize="30"
+            Margin="15"/>
     </Grid>
 
 </Window>
