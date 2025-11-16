@@ -10,6 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <RuntimeHostConfigurationOption Include="Switch.System.Windows.Appearance.DisableFluentThemeWindowBackdrop" Value="true" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Page Update="GUI\View\TrayGuideWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
@@ -21,6 +25,10 @@
       <None Update="App.config">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Infrastructure\" />
     </ItemGroup>
 
 </Project>
