@@ -30,6 +30,9 @@ public partial class App : Application
 
     private void LaunchGUI(bool IsAppAlreadyRunning)
     {
+        // Audio ping
+        System.Media.SystemSounds.Asterisk.Play();
+        
         // Set label text
         _trayGuideWindowConfig.SetIsAppAlreadyRunning(IsAppAlreadyRunning);
         
@@ -88,13 +91,12 @@ public partial class App : Application
                 break;
             case 1:
                 LaunchGUI(true);
-                break;
+                return;
             case 2:
                 LaunchGUI(false);
-                break;
+                return;
             default:
                 break;
         }
-        
     }
 }
