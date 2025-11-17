@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img style="width: 40%; height: 40%" src="https://github.com/sjain882/App-SingleInstanceTrayGuide-Win/blob/main/.github/Previews/TrayGuideWindow/Dark.png?raw=true"/>
+<img style="width: 40%; height: 40%" src="https://github.com/sjain882/App-SingleInstanceTrayGuide-Win/blob/main/.github/Previews/TrayGuideWindow/Themes.gif?raw=true"/>
 
 <br>
 <br>
@@ -110,8 +110,14 @@ The configuration file is pre-loaded with values for an ideal use case (OBS with
 
 6. Right click the shortcut > Pin to start.
 
+‎
+‎
+## 📈 Planned features
 
-
+- Option to highlight target program's tray icon with a red box (via UIAutomation)
+- Option to make this a flashing box, with customisable flash rate
+- Option to automatically move mouse to the target program's tray icon (via UIAutomation)
+- Option to temporarily lock the mouse in this position for a specified time (e.g, 1s)
 
 ‎
 ‎
