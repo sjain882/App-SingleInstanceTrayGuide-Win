@@ -52,7 +52,7 @@ Static previews are available in each subfolder **[here](https://github.com/sjai
 
 As someone who administers the system of a forgetful novice user, I constantly seek ways to minimise any required knowledge.
 
-One of the ways I manifest this is by making the Start menu their first port of call for any task. I even stuck a label under it re-iterating this, as it means less GUIs have to be be learnt.
+One of the ways I manifest this is by making the Start menu their first port of call for any task. I even stuck a label under it re-iterating this, as it means less GUIs have to be learnt.
 
 This concept perfectly matches the simple tile layout of Windows 10's Start menu.
 
