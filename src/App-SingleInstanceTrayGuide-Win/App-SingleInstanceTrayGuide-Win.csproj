@@ -7,6 +7,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <TargetFramework>net9.0-windows</TargetFramework>
+
+		<!-- Assembly metadata -->
+		<AssemblyTitle>Novice-friendly launcher for single-instance Windows apps.</AssemblyTitle>
+		<Description>https://github.com/sjain882/App-SingleInstanceTrayGuide-Win</Description>
+		<Company>sjain882</Company>
+		<Product>App-SingleInstanceTrayGuide-Win</Product>
+		<Copyright>Copyright © sjain882 2025</Copyright>
+		<AssemblyVersion>0.1.0.0</AssemblyVersion>
+		<FileVersion>0.1.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
