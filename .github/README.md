@@ -62,7 +62,7 @@ Instead, they will either present verbose warnings with no way to show the exist
 
 Others fail to present a GUI even when launched as the first instance, opting to silently create a tray  icon instead.
 
-If the user does not understand the concept of program instances, and that the tray icon is a means to control one, it can result in them getting lost or launching several instances of the same program. 
+If the user does not understand the concept of program instances, and that the small tray icon in the corner is a means to control one, it can result in them getting lost or launching several instances of the same program. 
 
 ‎
 ‎
