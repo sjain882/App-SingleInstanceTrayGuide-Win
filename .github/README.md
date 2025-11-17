@@ -176,7 +176,7 @@ Binaries are located in `App-SingleInstanceTrayGuide-Win\bin\Release\net9.0-wind
 
 All `*.exe` binary files of this project compiled by me are digitally self-signed. The attached certificate should carry this serial number:
 
-`18f6cc78c0fa778b4545c6d9d135cb52`
+`4cedc2fe9c34a68e4c9ea1e2d379fdee`
 
 If the serial number on your copy does not match this, or the digital certificate is missing the file has potentially been tampered with and should be deleted immediately.
 
