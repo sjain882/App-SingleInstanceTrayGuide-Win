@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Configuration;
 
 namespace App_SingleInstanceTrayGuide_Win.Config;
@@ -12,6 +13,7 @@ public class AppLaunchConfig : IConfig
     public string AppExecutablePath;
     public string AppWorkingDirectory;
     public string AppArguments;
+    public StringDictionary EnvironmentVariables { get; set; }
     
     public AppLaunchConfig() => LoadConfig();
     
@@ -25,5 +27,21 @@ public class AppLaunchConfig : IConfig
         AppExecutablePath = ConfigurationManager.AppSettings["AppExecutablePath"];
         AppWorkingDirectory = ConfigurationManager.AppSettings["AppWorkingDirectory"];
         AppArguments = ConfigurationManager.AppSettings["AppArguments"];
+        
+        // Build environment variable dictionary from keys starting with AppEnvVar_
+        EnvironmentVariables = new StringDictionary();
+
+        var envVars = ConfigurationManager.AppSettings.AllKeys
+            .Where(name => name.StartsWith("AppEnvVar_"))
+            .Select(pair => new
+            {
+                Key = pair.Substring("AppEnvVar_".Length), // strip prefix
+                Value = ConfigurationManager.AppSettings[pair]
+            });
+
+        foreach (var item in envVars)
+        {
+            EnvironmentVariables[item.Key] = item.Value;
+        }
     }
 }

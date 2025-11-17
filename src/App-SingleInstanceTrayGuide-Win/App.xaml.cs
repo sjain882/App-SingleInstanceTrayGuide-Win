@@ -139,19 +139,43 @@ public partial class App : Application
             }
             else
             {
-                using (var process = new Process())
+                // Use CMD so we can use environment variables, as this is not allowed with UseShellExecute = true
+                // /C ensures cmd window does not persist
+                var startInfo = new ProcessStartInfo("cmd.exe",
+                    $"/C \"\"{_appLaunchConfig.AppExecutablePath}\" {_appLaunchConfig.AppArguments}\"")
                 {
-                    process.StartInfo = new ProcessStartInfo
-                    {
-                        FileName = _appLaunchConfig.AppExecutablePath,
-                        WorkingDirectory = _appLaunchConfig.AppWorkingDirectory,
-                        Arguments = _appLaunchConfig.AppArguments,
-                        UseShellExecute = true
-                    };
-                    process.Start();
+                    UseShellExecute = false,
+                    WorkingDirectory = _appLaunchConfig.AppWorkingDirectory,
+                    CreateNoWindow = true
+                };
+
+                // Copy environment variables
+                foreach (var key in _appLaunchConfig.EnvironmentVariables.Keys.Cast<string>())
+                {
+                    startInfo.Environment[key] = _appLaunchConfig.EnvironmentVariables[key];
                 }
-                
+
+                // Fire and forget - no using or WaitForExit
+                Process.Start(startInfo);
+
+                // Continue immediately
                 LaunchGUI(false);
+                
+                /* At this point, the process hierarchy is:
+                 * App-SingleInstanceTrayGuide-Win.exe -> cmd.exe -> obs64.exe
+                 * (where obs64.exe is the target app)
+                 *
+                 * Once the OK button is clicked, the process hierarchy is: 
+                 * cmd.exe -> obs64.exe
+                 *
+                 * aka, obs64.exe will not get terminated and will continue to run normally.
+                 * it will just be orphaned from our GUI process, and left as a child of
+                 * the cmd process that we created.
+                 * i confirmed this with Process Explorer.
+                 * 
+                 * this should work fine for most programs and is GOOD, because we DON'T want the
+                 * target application to be terminated when the GUI is closed.
+                 */
             }
         }
     }
