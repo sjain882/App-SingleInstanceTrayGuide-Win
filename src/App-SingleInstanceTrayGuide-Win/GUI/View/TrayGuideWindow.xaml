@@ -24,25 +24,25 @@
         <Grid.RowDefinitions>
 
             <!--  Title label  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
             <!--  Taskbar guide label  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
             <!--  Taskbar image  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
             <!--  App icon guide label  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
             <!--  App icon image  -->
-            <RowDefinition Height="192*" />
+            <RowDefinition Height="Auto" />
 
             <!--  Overflow guide label | Overflow image  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
             <!--  OK button  -->
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="Auto" />
 
         </Grid.RowDefinitions>
 
@@ -101,7 +101,7 @@
             MaxHeight="192"/>
 
         <!--  Overflow guide label | Overflow image  -->
-        <Grid Grid.Row="5" Margin="5,5,5,20">
+        <Grid Grid.Row="5" Margin="5,5,5,5">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*" />
@@ -123,7 +123,7 @@
                 Source="{ Binding OverflowIcon, Mode=OneWay}"
                 Stretch="Uniform"
                 Margin="5"
-                MaxWidth="96"/>
+                MaxWidth="64"/>
 
         </Grid>
 
