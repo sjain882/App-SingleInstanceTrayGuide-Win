@@ -24,6 +24,6 @@ public class AppLaunchConfig : IConfig
         AppProcessName = ConfigurationManager.AppSettings["AppProcessName"];
         AppExecutablePath = ConfigurationManager.AppSettings["AppExecutablePath"];
         AppWorkingDirectory = ConfigurationManager.AppSettings["AppWorkingDirectory"];
-        AppArguments = ConfigurationManager.AppSettings["AppWorkingDirectory"];
+        AppArguments = ConfigurationManager.AppSettings["AppArguments"];
     }
 }
