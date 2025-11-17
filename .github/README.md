@@ -52,9 +52,9 @@ Static previews are available in each subfolder **[here](https://github.com/sjai
 
 As someone who administers the system of a forgetful novice user, I constantly seek ways to minimise any required knowledge.
 
-One of the ways I manifest this is by making the Start menu their first port of call for any task. I even stuck a label under it re-iterating this, as it means less GUIs must be learnt.
+One of the ways I manifest this is by making the Start menu their first port of call for any task. I even stuck a label under it re-iterating this, as it means less GUIs have to be be learnt.
 
-The simple tile layout of Windows 10's Start menu perfectly matches this concept.
+This concept perfectly matches the simple tile layout of Windows 10's Start menu.
 
 Some programs, however, do not offer the ability to re-use existing background instances when their executables are launched. 
 
@@ -62,7 +62,7 @@ Instead, they will either present verbose warnings with no way to show the exist
 
 Others fail to present a GUI even when launched as the first instance, opting to silently create a tray  icon instead.
 
-If the user does not understand the concept of program instances, and that a tray icon is a means to control one, this can result in them getting lost or launching several instances of the same program. 
+If the user does not understand the concept of program instances, and that the tray icon is a means to control one, it can result in them getting lost or launching several instances of the same program. 
 
 ‎
 ‎
@@ -70,17 +70,17 @@ If the user does not understand the concept of program instances, and that a tra
 
 This program acts as a middleman to solve this problem.
 
-A copy of it is configured to launch a specified application.
+A copy of it is configured to launch another application.
 
 Then, a shortcut to that copy (with an appropriate icon) is pinned to the Start menu instead of the specified application itself.
 
-When run, it will check if the target program is already running, and:
+When started, it will check if the target program is already running, and:
 
 1. if so - presents the user with a guide on how to use its tray icon
 2. if not - launches the program, then presents the same guide (assuming it minimises to tray)
 3. if multiple instances - alerts the user to contact their administrator
 
-The guide is displayed close to the notification tray area in a frameless and reliably always-on-top state, ensuring the user can't accidentally close, resize or miss it.
+The guide is displayed near the notification tray area in a frameless and reliably always-on-top state, ensuring the user can't accidentally close, resize or miss it.
 
 ‎
 ‎
@@ -138,15 +138,15 @@ The configuration file is pre-loaded with values for an ideal use case (OBS with
 
 #### Debug
 
-Run `dotnet build` in the project root (`src`).
+1. Run `dotnet build` in the project root (`src`).
 
-Binaries are located in `App-SingleInstanceTrayGuide-Win\bin\Debug\net9.0-windows`.
+2. Binaries are located in `App-SingleInstanceTrayGuide-Win\bin\Debug\net9.0-windows`.
 
 #### Release
 
-Run `dotnet publish -c Release` in the project root (`src`).
+1. Run `dotnet publish -c Release` in the project root (`src`).
 
-Binaries are located in `App-SingleInstanceTrayGuide-Win\bin\Release\net9.0-windows`.
+2. Binaries are located in `App-SingleInstanceTrayGuide-Win\bin\Release\net9.0-windows\publish`.
 
 ### Visual Studio 2022
 
@@ -181,6 +181,8 @@ All `*.exe` binary files of this project compiled by me are digitally self-signe
 If the serial number on your copy does not match this, or the digital certificate is missing the file has potentially been tampered with and should be deleted immediately.
 
 You can check this by right clicking on the `App-SingleInstanceTrayGuide-Win` .exe / Application file > Properties > Digital Signatures > Select the one named "sjain882" > Details > View Certificate > Details > Serial Number.
+
+The serial number for this project's binaries will be different to the serial found in my other projects - this is completely normal.
 
 ‎
 ‎
