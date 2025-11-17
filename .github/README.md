@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img style="width: 40%; height: 40%" src="https://github.com/sjain882/App-SingleInstanceTrayGuide-Win/blob/main/.github/Previews/TrayGuideWindow/Themes.gif?raw=true"/>
+<img style="width: 100%; height: 100%" src="https://github.com/sjain882/App-SingleInstanceTrayGuide-Win/blob/main/.github/Previews/TrayGuideWindow/Themes.gif?raw=true"/>
 
 <br>
 <br>
